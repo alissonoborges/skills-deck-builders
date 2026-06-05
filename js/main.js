@@ -619,11 +619,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Video — show icon + metadata
         const info = document.createElement('div');
         info.className = 'file-info';
-        info.innerHTML = `
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-          <span class="file-name">${file.name}</span>
-          <span class="file-size">${formatBytes(file.size)}</span>
-        `;
+        info.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>';
+        
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'file-name';
+        nameSpan.textContent = file.name;
+        info.appendChild(nameSpan);
+
+        const sizeSpan = document.createElement('span');
+        sizeSpan.className = 'file-size';
+        sizeSpan.textContent = formatBytes(file.size);
+        info.appendChild(sizeSpan);
+
         item.appendChild(info);
       }
 
