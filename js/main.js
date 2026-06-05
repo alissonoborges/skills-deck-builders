@@ -85,6 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.querySelector('.nav-hamburger');
   const navMobile  = document.querySelector('.mobile-menu');
 
+  // Relocate mobile menu to root of body to escape transformed ancestors (backdrop-filter containing block bug on iOS)
+  if (navMobile && navMobile.parentElement !== document.body) {
+    document.body.appendChild(navMobile);
+  }
+
   const openMobileNav = () => {
     if (!navMobile) return;
     navMobile.classList.add('active');
