@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Areas We Serve | Massachusetts Luxury Deck Builder | Skills Deck Builders</title>
+  <meta name="description" content="Explore our service areas across Greater Boston and MetroWest Massachusetts, including Wellesley, Weston, Chestnut Hill, Newton, and Sudbury. Custom design-build outdoor spaces.">
+  <link rel="canonical" href="https://skillsdeckbuilders.com/areas-we-serve.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Areas We Serve | Massachusetts Luxury Deck Builder | Skills Deck Builders">
+  <meta property="og:description" content="Explore our service areas across Greater Boston and MetroWest Massachusetts, including Wellesley, Weston, Chestnut Hill, Newton, and Sudbury. Custom design-build outdoor spaces.">
+  <meta property="og:image" content="https://skillsdeckbuilders.com/images/portfolio-weston.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://skillsdeckbuilders.com/areas-we-serve.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* Custom SVG Map Styles */
+    .map-section {
+      padding: 6rem 0;
+      background: var(--color-bg-alt);
+    }
+    .map-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 992px) {
+      .map-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+    .map-container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .map-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .map-node {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .map-node circle {
+      fill: var(--color-bg);
+      stroke: var(--color-primary);
+      stroke-width: 2;
+      transition: fill 0.3s ease, stroke-width 0.3s ease;
+    }
+    .map-node text {
+      fill: var(--color-text-muted);
+      font-size: 11px;
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: fill 0.3s ease, font-size 0.3s ease;
+      user-select: none;
+    }
+    .map-node:hover {
+      transform: scale(1.05);
+    }
+    .map-node:hover circle {
+      fill: var(--color-primary);
+      stroke-width: 3;
+    }
+    .map-node:hover text {
+      fill: var(--color-text);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .map-link-line {
+      stroke: rgba(212, 175, 55, 0.15);
+      stroke-width: 1.5;
+      stroke-dasharray: 4,4;
+    }
+    .map-cities-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 576px) {
+      .map-cities-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    .city-card {
+      background: var(--color-bg);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 1.5rem;
+      border-radius: 8px;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .city-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(212, 175, 55, 0.3);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .city-card h3 {
+      font-family: var(--font-primary);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-text);
+    }
+    .city-card p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.4;
+    }
+    .city-card .city-link {
+      font-size: 0.85rem;
+      font-family: var(--font-secondary);
+      font-weight: 600;
+      color: var(--color-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: gap 0.2s ease;
+    }
+    .city-card:hover .city-link {
+      gap: 0.5rem;
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD — LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Skills Deck Builders",
+    "telephone": "(774) 423-9786",
+    "email": "skillsdeckbuilders@gmail.com",
+    "url": "https://skillsdeckbuilders.com",
+    "image": "https://skillsdeckbuilders.com/images/portfolio-weston.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Wellesley",
+      "addressRegion": "MA",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Wellesley" },
+      { "@type": "City", "name": "Weston" },
+      { "@type": "City", "name": "Chestnut Hill" },
+      { "@type": "City", "name": "Brookline" },
+      { "@type": "City", "name": "Newton" },
+      { "@type": "City", "name": "Sudbury" },
+      { "@type": "City", "name": "Dover" },
+      { "@type": "City", "name": "Lincoln" },
+      { "@type": "City", "name": "Concord" },
+      { "@type": "City", "name": "Lexington" },
+      { "@type": "City", "name": "Needham" },
+      { "@type": "City", "name": "Wayland" },
+      { "@type": "City", "name": "Winchester" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+  ============================================= -->
+  <nav class="nav" id="main-nav">
+    <div>
+      <a href="index.html">
+        <span class="nav-logo-main">SKILLS</span>
+        <span class="nav-logo-sub">DECK BUILDERS</span>
+      </a>
+
+      <ul id="nav-links">
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="areas-we-serve.html" class="active">Areas Served</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+      </ul>
+
+      <a href="contact.html" class="nav-cta btn-primary">Schedule Consultation</a>
+
+      <button id="nav-hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-menu-links">
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="areas-we-serve.html" class="active">Areas Served</a></li>
+        <li><a href="process.html">Process</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="contact.html" class="btn-primary">Schedule Consultation</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       PAGE HERO (60vh)
+  ============================================= -->
+  <section class="page-hero" id="hero">
+    <div class="hero-bg" style="background-image: url('images/portfolio-weston.png');"></div>
+    <div class="hero-content container">
+      <span class="hero-subtitle">SERVICE REGIONS</span>
+      <h1>Areas We Serve</h1>
+      <p>Building architectural outdoor sanctuaries across Greater Boston's most prestigious communities.</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- ============================================
+         INTERACTIVE MAP SECTION
+    ============================================= -->
+    <section class="map-section">
+      <div class="container reveal">
+        <span class="section-subtitle">OUR COVERAGE</span>
+        <h2 class="section-title">Greater Boston &amp; MetroWest</h2>
+        <p class="section-intro">We design and construct luxury spaces tailored to the unique architectural profiles and local regulations of each community.</p>
+
+        <div class="map-grid">
+          <!-- SVG Map -->
+          <div class="map-container">
+            <svg class="map-svg" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid background -->
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="600" height="500" fill="url(#grid)"/>
+
+              <!-- Connection Lines -->
+              <line x1="200" y1="100" x2="280" y2="150" class="map-link-line" /> <!-- Concord -> Lincoln -->
+              <line x1="280" y1="150" x2="350" y2="80" class="map-link-line" /> <!-- Lincoln -> Lexington -->
+              <line x1="350" y1="80" x2="450" y2="70" class="map-link-line" /> <!-- Lexington -> Winchester -->
+              <line x1="150" y1="180" x2="280" y2="150" class="map-link-line" /> <!-- Sudbury -> Lincoln -->
+              <line x1="150" y1="180" x2="180" y2="240" class="map-link-line" /> <!-- Sudbury -> Wayland -->
+              <line x1="180" y1="240" x2="280" y2="230" class="map-link-line" /> <!-- Wayland -> Weston -->
+              <line x1="280" y1="230" x2="280" y2="150" class="map-link-line" /> <!-- Weston -> Lincoln -->
+              <line x1="280" y1="230" x2="380" y2="240" class="map-link-line" /> <!-- Weston -> Newton -->
+              <line x1="380" y1="240" x2="460" y2="250" class="map-link-line" /> <!-- Newton -> Brookline -->
+              <line x1="380" y1="240" x2="430" y2="270" class="map-link-line" /> <!-- Newton -> Chestnut Hill -->
+              <line x1="280" y1="230" x2="280" y2="310" class="map-link-line" /> <!-- Weston -> Wellesley -->
+              <line x1="280" y1="310" x2="360" y2="340" class="map-link-line" /> <!-- Wellesley -> Needham -->
+              <line x1="280" y1="310" x2="270" y2="390" class="map-link-line" /> <!-- Wellesley -> Dover -->
+
+              <!-- Concord Node -->
+              <a href="deck-builder-concord-ma.html">
+                <g class="map-node">
+                  <circle cx="200" cy="100" r="8"/>
+                  <text x="200" y="85" text-anchor="middle">CONCORD</text>
+                </g>
+              </a>
+
+              <!-- Lexington Node -->
+              <a href="deck-builder-lexington-ma.html">
+                <g class="map-node">
+                  <circle cx="350" cy="80" r="8"/>
+                  <text x="350" y="65" text-anchor="middle">LEXINGTON</text>
+                </g>
+              </a>
+
+              <!-- Winchester Node -->
+              <a href="deck-builder-winchester-ma.html">
+                <g class="map-node">
+                  <circle cx="450" cy="70" r="8"/>
+                  <text x="450" y="55" text-anchor="middle">WINCHESTER</text>
+                </g>
+              </a>
+
+              <!-- Lincoln Node -->
+              <a href="deck-builder-lincoln-ma.html">
+                <g class="map-node">
+                  <circle cx="280" cy="150" r="8"/>
+                  <text x="280" y="135" text-anchor="middle">LINCOLN</text>
+                </g>
+              </a>
+
+              <!-- Sudbury Node -->
+              <a href="deck-builder-sudbury-ma.html">
+                <g class="map-node">
+                  <circle cx="150" cy="180" r="8"/>
+                  <text x="150" y="165" text-anchor="middle">SUDBURY</text>
+                </g>
+              </a>
+
+              <!-- Wayland Node -->
+              <a href="deck-builder-wayland-ma.html">
+                <g class="map-node">
+                  <circle cx="180" cy="240" r="8"/>
+                  <text x="180" y="260" text-anchor="middle">WAYLAND</text>
+                </g>
+              </a>
+
+              <!-- Weston Node -->
+              <a href="deck-builder-weston-ma.html">
+                <g class="map-node">
+                  <circle cx="280" cy="230" r="8"/>
+                  <text x="280" y="215" text-anchor="middle">WESTON</text>
+                </g>
+              </a>
+
+              <!-- Newton Node -->
+              <a href="deck-builder-newton-ma.html">
+                <g class="map-node">
+                  <circle cx="380" cy="240" r="8"/>
+                  <text x="380" y="225" text-anchor="middle">NEWTON</text>
+                </g>
+              </a>
+
+              <!-- Brookline Node -->
+              <a href="deck-builder-brookline-ma.html">
+                <g class="map-node">
+                  <circle cx="460" cy="250" r="8"/>
+                  <text x="460" y="235" text-anchor="middle">BROOKLINE</text>
+                </g>
+              </a>
+
+              <!-- Chestnut Hill Node -->
+              <a href="deck-builder-chestnut-hill-ma.html">
+                <g class="map-node">
+                  <circle cx="430" cy="270" r="8"/>
+                  <text x="445" y="274" text-anchor="start">CHESTNUT HILL</text>
+                </g>
+              </a>
+
+              <!-- Wellesley Node -->
+              <a href="deck-builder-wellesley-ma.html">
+                <g class="map-node">
+                  <circle cx="280" cy="310" r="8"/>
+                  <text x="280" y="295" text-anchor="middle">WELLESLEY</text>
+                </g>
+              </a>
+
+              <!-- Needham Node -->
+              <a href="deck-builder-needham-ma.html">
+                <g class="map-node">
+                  <circle cx="360" cy="340" r="8"/>
+                  <text x="360" y="360" text-anchor="middle">NEEDHAM</text>
+                </g>
+              </a>
+
+              <!-- Dover Node -->
+              <a href="deck-builder-dover-ma.html">
+                <g class="map-node">
+                  <circle cx="270" cy="390" r="8"/>
+                  <text x="270" y="410" text-anchor="middle">DOVER</text>
+                </g>
+              </a>
+            </svg>
+          </div>
+
+          <!-- Cities List Cards -->
+          <div class="map-cities-list">
+            <div class="city-card">
+              <div>
+                <h3>Wellesley</h3>
+                <p>A community defined by elegant Wellesley Colonials and historical details.</p>
+              </div>
+              <a href="deck-builder-wellesley-ma.html" class="city-link">Explore Wellesley →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Weston</h3>
+                <p>Estates featuring spacious layouts, high structural standards, and large lots.</p>
+              </div>
+              <a href="deck-builder-weston-ma.html" class="city-link">Explore Weston →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Chestnut Hill</h3>
+                <p>Historic architectural properties requiring detailed local preservation care.</p>
+              </div>
+              <a href="deck-builder-chestnut-hill-ma.html" class="city-link">Explore Chestnut Hill →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Brookline</h3>
+                <p>Urban backyards requiring custom layout optimization and local engineering.</p>
+              </div>
+              <a href="deck-builder-brookline-ma.html" class="city-link">Explore Brookline →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Newton</h3>
+                <p>Diverse neighborhoods, from Newton Centre to Waban, built with unique design style.</p>
+              </div>
+              <a href="deck-builder-newton-ma.html" class="city-link">Explore Newton →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Sudbury</h3>
+                <p>Suburban lots requiring strict conservation setbacks and site reviews.</p>
+              </div>
+              <a href="deck-builder-sudbury-ma.html" class="city-link">Explore Sudbury →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Dover</h3>
+                <p>Large luxury properties, private estates, and expansive multi-level deck builds.</p>
+              </div>
+              <a href="deck-builder-dover-ma.html" class="city-link">Explore Dover →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Lincoln</h3>
+                <p>Contemporary modern and rustic architectures requiring integrated designs.</p>
+              </div>
+              <a href="deck-builder-lincoln-ma.html" class="city-link">Explore Lincoln →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Concord</h3>
+                <p>Strict historic preservation guidelines and wetland buffer protections.</p>
+              </div>
+              <a href="deck-builder-concord-ma.html" class="city-link">Explore Concord →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Lexington</h3>
+                <p>Colonial and mid-century residences requiring code-compliant expansions.</p>
+              </div>
+              <a href="deck-builder-lexington-ma.html" class="city-link">Explore Lexington →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Needham</h3>
+                <p>Classic family suburban homes featuring functional, durable outdoor living spaces.</p>
+              </div>
+              <a href="deck-builder-needham-ma.html" class="city-link">Explore Needham →</a>
+            </div>
+
+            <div class="city-card">
+              <div>
+                <h3>Wayland</h3>
+                <p>Waterfront parameters requiring custom setbacks along town borders.</p>
+              </div>
+              <a href="deck-builder-wayland-ma.html" class="city-link">Explore Wayland →</a>
+            </div>
+
+            <div class="city-card" style="grid-column: span 2;">
+              <div>
+                <h3>Winchester</h3>
+                <p>Hillside elevations requiring architectural engineering, deep concrete piers, and strict zoning reviews.</p>
+              </div>
+              <a href="deck-builder-winchester-ma.html" class="city-link">Explore Winchester →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         MUNICIPAL COMPLIANCE SECTION
+    ============================================= -->
+    <section class="section section-dark">
+      <div class="container reveal">
+        <span class="section-subtitle">LOCAL EXPERTISE</span>
+        <h2 class="section-title">Navigating Building Departments &amp; Zoning</h2>
+        <p class="section-intro">Every town in Massachusetts has its own building codes, setback lines, lot coverage allowances, and conservation guidelines. We coordinate directly with local inspectors to ensure clean compliance.</p>
+
+        <div class="standards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="standard-item">
+            <h3>Zoning Review</h3>
+            <p>We analyze your property's lot size and zoning district to determine setbacks (distance from property lines) and maximum lot coverage. This keeps your project aligned with local bylaws from the start.</p>
+          </div>
+
+          <div class="standard-item">
+            <h3>Conservation Commissions</h3>
+            <p>If your property borders wetlands, ponds, or rivers, we manage filings under the Massachusetts Wetlands Protection Act, coordinating buffer-zone reviews and conservation site visits.</p>
+          </div>
+
+          <div class="standard-item">
+            <h3>Structural Sign-off</h3>
+            <p>Our drawings are prepared and engineered to comply with the 9th Edition of the Massachusetts State Building Code, guaranteeing that footings, beams, and joist spans are structurally verified.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FINAL CTA
+    ============================================= -->
+    <section class="cta-section" id="cta">
+      <div class="container">
+        <h2>Start Your Design Journey</h2>
+        <p>Schedule an on-site design consultation in your local community.</p>
+        <a href="contact.html" class="btn-primary btn-lg">Request Consultation</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================
+       FOOTER
+  ============================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-col-brand">
+          <div class="footer-logo">
+            <span class="footer-logo-main">SKILLS</span>
+            <span class="footer-logo-sub">DECK BUILDERS</span>
+          </div>
+          <p>Premium outdoor living design and construction for Massachusetts' finest homes.</p>
+          <div class="footer-contact">
+            <a href="tel:+17744239786">(774) 423-9786</a>
+            <a href="mailto:skillsdeckbuilders@gmail.com">skillsdeckbuilders@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="areas-we-serve.html">Areas Served</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="custom-decks.html">Custom Decks</a></li>
+            <li><a href="covered-porches.html">Covered Porches</a></li>
+            <li><a href="outdoor-kitchens.html">Outdoor Kitchens</a></li>
+            <li><a href="poolside-decks.html">Poolside Decks</a></li>
+            <li><a href="railings-lighting.html">Railings &amp; Lighting</a></li>
+            <li><a href="deck-replacement.html">Deck Replacement</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Areas We Serve</h4>
+          <ul class="footer-areas">
+            <li><a href="deck-builder-wellesley-ma.html">Wellesley</a></li>
+            <li><a href="deck-builder-weston-ma.html">Weston</a></li>
+            <li><a href="deck-builder-chestnut-hill-ma.html">Chestnut Hill</a></li>
+            <li><a href="deck-builder-brookline-ma.html">Brookline</a></li>
+            <li><a href="deck-builder-newton-ma.html">Newton</a></li>
+            <li><a href="deck-builder-sudbury-ma.html">Sudbury</a></li>
+            <li><a href="deck-builder-dover-ma.html">Dover</a></li>
+            <li><a href="deck-builder-lincoln-ma.html">Lincoln</a></li>
+            <li><a href="deck-builder-concord-ma.html">Concord</a></li>
+            <li><a href="deck-builder-lexington-ma.html">Lexington</a></li>
+            <li><a href="deck-builder-needham-ma.html">Needham</a></li>
+            <li><a href="deck-builder-wayland-ma.html">Wayland</a></li>
+            <li><a href="deck-builder-winchester-ma.html">Winchester</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Skills Deck Builders. All rights reserved. | CSL CS-119782 | HIC 207906 | Wellesley, MA</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
