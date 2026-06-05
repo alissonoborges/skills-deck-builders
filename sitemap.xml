@@ -2,68 +2,152 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core Pages -->
   <url>
-    <loc>https://skillsdeckbuilders.com/</loc>
+    <loc>https://skillsdeckbuilders.com/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://skillsdeckbuilders.com/portfolio</loc>
+    <loc>https://skillsdeckbuilders.com/portfolio.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://skillsdeckbuilders.com/services</loc>
+    <loc>https://skillsdeckbuilders.com/services.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://skillsdeckbuilders.com/process</loc>
+    <loc>https://skillsdeckbuilders.com/areas-we-serve.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skillsdeckbuilders.com/about</loc>
+    <loc>https://skillsdeckbuilders.com/process.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skillsdeckbuilders.com/reviews</loc>
+    <loc>https://skillsdeckbuilders.com/reviews.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skillsdeckbuilders.com/contact</loc>
+    <loc>https://skillsdeckbuilders.com/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Phase 2: Service Pages (placeholders for future) -->
-  <!--
-  <url><loc>https://skillsdeckbuilders.com/custom-decks</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-replacement</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/covered-porches</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/outdoor-kitchens</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/poolside-decks</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/composite-decking</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/luxury-outdoor-living</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/railings-lighting</loc><priority>0.8</priority></url>
-  -->
+  <!-- Service Silo Pages -->
+  <url>
+    <loc>https://skillsdeckbuilders.com/custom-decks.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/covered-porches.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/outdoor-kitchens.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/poolside-decks.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/railings-lighting.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-replacement.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/composite-decking.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/luxury-outdoor-living.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- Phase 2: City Pages (placeholders for future) -->
-  <!--
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-wellesley-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-weston-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-chestnut-hill-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-brookline-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-newton-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-sudbury-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-dover-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-lincoln-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-concord-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-lexington-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-needham-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-wayland-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/deck-builder-winchester-ma</loc><priority>0.8</priority></url>
-  <url><loc>https://skillsdeckbuilders.com/areas-we-serve</loc><priority>0.7</priority></url>
-  -->
+  <!-- Local SEO City Pages -->
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-wellesley-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-weston-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-chestnut-hill-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-brookline-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-newton-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-sudbury-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-dover-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-lincoln-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-concord-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-lexington-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-needham-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-wayland-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsdeckbuilders.com/deck-builder-winchester-ma.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
