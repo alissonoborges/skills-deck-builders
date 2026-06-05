@@ -216,7 +216,13 @@
 
           <!-- Right Column: Consultation Form -->
           <div class="contact-form-wrapper">
-            <form id="consultation-form" class="consultation-form" action="#" method="POST" enctype="multipart/form-data">
+            <form id="consultation-form" class="consultation-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+              <!-- Web3Forms Access Key - User needs to replace this with their actual key from web3forms.com -->
+              <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+              <!-- Custom subject line for the email notifications -->
+              <input type="hidden" name="subject" value="New Consultation Request - Skills Deck Builders">
+              <!-- Redirect fallback page if JS is disabled -->
+              <input type="hidden" name="redirect" value="https://skills-deck-builders.vercel.app/thank-you.html">
 
               <h3 class="form-title">Request Private Consultation</h3>
 
@@ -495,11 +501,38 @@
         });
       }
 
-      // Form submission → redirect to thank-you page
+      // Form submission → post to Web3Forms and redirect to thank-you.html on success
       form.addEventListener('submit', function(e) {
         e.preventDefault();
-        // In production, send form data to server here
-        window.location.href = 'thank-you.html';
+        
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+
+        const formData = new FormData(form);
+        
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            window.location.href = 'thank-you.html';
+          } else {
+            console.warn(response);
+            alert('Form submission failed: ' + (json.message || 'Unknown error'));
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          alert('An error occurred while sending your request. Please try again or call us directly.');
+          submitButton.textContent = originalButtonText;
+          submitButton.disabled = false;
+        });
       });
     })();
   </script>

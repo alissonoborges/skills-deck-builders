@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
      Toggle the mobile nav and animate the hamburger icon to an ×.
      ----------------------------------------------------------------------- */
 
-  const hamburger = document.querySelector('.hamburger');
-  const navMobile  = document.querySelector('.nav-mobile');
+  const hamburger = document.querySelector('.nav-hamburger');
+  const navMobile  = document.querySelector('.mobile-menu');
 
   const openMobileNav = () => {
     if (!navMobile) return;
