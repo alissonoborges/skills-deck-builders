@@ -3213,6 +3213,14 @@ p {
   background-color: rgba(184, 149, 106, 0.08);
 }
 
+.area-tag.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 1;
+  background-color: rgba(184, 149, 106, 0.15);
+  font-weight: 600;
+}
+
 /* ————————————————————————————————————————————————————————————
    41. THANK YOU PAGE
    ———————————————————————————————————————————————————————————— */
@@ -3617,6 +3625,12 @@ p {
 .community-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1rem; }
 .community-tag { font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-full); transition: border-color var(--transition-base), color var(--transition-base); text-decoration: none; }
 .community-tag:hover { border-color: var(--accent); color: var(--accent); }
+.community-tag.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: rgba(184, 149, 106, 0.15);
+  font-weight: 600;
+}
 
 /* Before/after slider aliases */
 .before-after-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); aspect-ratio: 16/9; user-select: none; touch-action: none; }

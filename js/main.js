@@ -916,6 +916,45 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* -----------------------------------------------------------------------
+     18 · INTERACTIVE MAP CITY SWITCHER
+     When clicking on community/area tags, change the Google Maps iframe source.
+     ----------------------------------------------------------------------- */
+
+  const communityTags = document.querySelectorAll('.community-tag, .area-tag');
+  const mapIframe = document.querySelector('.map-placeholder iframe');
+
+  if (communityTags.length && mapIframe) {
+    // Set first tag active by default if none are active
+    let activeTag = Array.from(communityTags).find(tag => tag.classList.contains('active'));
+    if (!activeTag && communityTags.length > 0) {
+      communityTags[0].classList.add('active');
+    }
+
+    communityTags.forEach((tag) => {
+      // In contact.html, the tags are links. Prevent default action.
+      tag.addEventListener('click', (e) => {
+        if (tag.tagName.toLowerCase() === 'a') {
+          e.preventDefault();
+        }
+
+        // Update active class
+        communityTags.forEach((t) => t.classList.remove('active'));
+        tag.classList.add('active');
+
+        // Extract city name and build the Google Maps embed URL
+        const city = tag.textContent.trim();
+        const query = encodeURIComponent(`${city}, MA`);
+        
+        // Use standard maps search URL which works without API Key and centers on the city
+        const newSrc = `https://maps.google.com/maps?q=${query}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+        
+        // Set new src
+        mapIframe.src = newSrc;
+      });
+    });
+  }
+
+  /* -----------------------------------------------------------------------
      END
      ----------------------------------------------------------------------- */
 });
