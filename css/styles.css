@@ -383,7 +383,7 @@ p {
   height: 64px;
   width: auto;
   display: block;
-  filter: brightness(0) saturate(100%) invert(67%) sepia(21%) saturate(983%) hue-rotate(334deg) brightness(96%) contrast(89%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(21%) saturate(1013%) hue-rotate(345deg) brightness(98%) contrast(93%);
 }
 
 @media (min-width: 1024px) {
@@ -1495,7 +1495,7 @@ p {
   height: 60px;
   width: auto;
   display: block;
-  filter: brightness(0) saturate(100%) invert(67%) sepia(21%) saturate(983%) hue-rotate(334deg) brightness(96%) contrast(89%);
+  filter: brightness(0) saturate(100%) invert(67%) sepia(21%) saturate(1013%) hue-rotate(345deg) brightness(98%) contrast(93%);
 }
 
 @media (min-width: 1024px) {
