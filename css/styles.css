@@ -1120,7 +1120,7 @@ p {
    ———————————————————————————————————————————————————————————— */
 .process-steps {
   display: grid;
-  gap: var(--space-3xl);
+  gap: var(--space-xl);
 }
 
 .process-step {
@@ -1139,29 +1139,30 @@ p {
 
 .process-step-number {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
-  color: var(--border);
+  color: var(--accent);
   line-height: 1;
 }
 
 .process-step h3 {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
   color: var(--accent);
 }
 
 .process-step p {
   color: var(--text-secondary);
-  line-height: 1.7;
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 /* ————————————————————————————————————————————————————————————
    14. TESTIMONIALS
    ———————————————————————————————————————————————————————————— */
 .testimonial-card {
-  padding: var(--space-2xl);
+  padding: var(--space-lg);
   background-color: #FFFFFF;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
@@ -1187,13 +1188,13 @@ p {
 
 .testimonial-quote {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-style: italic;
-  line-height: 1.8;
+  line-height: 1.6;
   color: var(--text-primary);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
-  padding-top: 1.5rem;
+  padding-top: 1.25rem;
 }
 
 .testimonial-quote::before {
@@ -1343,8 +1344,8 @@ p {
    ———————————————————————————————————————————————————————————— */
 .standards-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-xl);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
 }
 
 @media (min-width: 768px) {
@@ -1356,20 +1357,21 @@ p {
 @media (min-width: 1024px) {
   .standards-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
   }
 }
 
 .standard-item {
   text-align: center;
-  padding: var(--space-xl);
+  padding: var(--space-md);
 }
 
 .standard-item > svg {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   color: var(--accent);
   display: block;
-  margin: 0 auto 1.25rem;
+  margin: 0 auto 0.75rem;
   transition: transform var(--transition-base), color var(--transition-base);
 }
 
@@ -1381,15 +1383,15 @@ p {
 .standard-item h3,
 .standard-item h4 {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
 }
 
 .standard-item p {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 /* ————————————————————————————————————————————————————————————
@@ -1892,21 +1894,21 @@ a.contact-item:hover .contact-icon {
 .section-header {
   text-align: center;
   max-width: 700px;
-  margin: 0 auto var(--space-3xl);
+  margin: 0 auto var(--space-xl);
 }
 
 .section-header .subtitle {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .section-header h2 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .section-header p {
   color: var(--text-secondary);
-  font-size: 1.0625rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* Dark section header overrides */
@@ -2017,11 +2019,11 @@ a.contact-item:hover .contact-icon {
 
 
   .testimonial-card {
-    padding: var(--space-2xl) 2.5rem;
+    padding: var(--space-lg) var(--space-xl);
   }
 
   .section-header {
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-xl);
   }
 }
 
@@ -2032,7 +2034,7 @@ a.contact-item:hover .contact-icon {
   }
 
   .section-header {
-    margin-bottom: var(--space-3xl);
+    margin-bottom: var(--space-xl);
   }
 
   .process-step {
@@ -3489,17 +3491,17 @@ a.contact-item:hover .contact-icon {
 
 .section-intro {
   font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--text-secondary);
   max-width: 700px;
-  margin: 0 auto var(--space-2xl);
+  margin: 0 auto var(--space-lg);
   text-align: center;
 }
 
 .section-cta {
   text-align: center;
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-lg);
 }
 
 /* Dark section overrides for section-intro */
@@ -3762,7 +3764,9 @@ a.contact-item:hover .contact-icon {
 .testimonial-project { font-family: var(--font-body); font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; }
 
 /* Process timeline alias */
-.process-timeline { display: grid; gap: var(--space-3xl); }
+.process-timeline { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+@media (min-width: 768px) { .process-timeline { grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); } }
+.process-timeline .process-step { background: rgba(255,255,255,0.04); border: 1px solid var(--border-dark); border-radius: var(--radius-md); padding: var(--space-md); display: flex; flex-direction: column; gap: 0.25rem; }
 
 /* Text link alias */
 .text-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: color var(--transition-base); }
