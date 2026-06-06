@@ -380,14 +380,14 @@ p {
 }
 
 .nav-logo-img {
-  height: 68px;
+  height: 28px;
   width: auto;
   display: block;
 }
 
 @media (min-width: 1024px) {
   .nav-logo-img {
-    height: 80px;
+    height: 36px;
   }
 }
 
@@ -1488,14 +1488,14 @@ p {
 }
 
 .footer-logo-img {
-  height: 80px;
+  height: 36px;
   width: auto;
   display: block;
 }
 
 @media (min-width: 1024px) {
   .footer-logo-img {
-    height: 100px;
+    height: 44px;
   }
 }
 
