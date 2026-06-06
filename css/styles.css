@@ -1343,18 +1343,21 @@ p {
   padding: var(--space-xl);
 }
 
-.standard-icon {
-  width: 3rem;
-  height: 3rem;
+.standard-item > svg {
+  width: 2.5rem;
+  height: 2.5rem;
   color: var(--accent);
-  margin: 0 auto 1rem;
+  display: block;
+  margin: 0 auto 1.25rem;
+  transition: transform var(--transition-base), color var(--transition-base);
 }
 
-.standard-icon svg {
-  width: 100%;
-  height: 100%;
+.standard-item:hover > svg {
+  transform: translateY(-4px);
+  color: var(--accent-light);
 }
 
+.standard-item h3,
 .standard-item h4 {
   font-family: var(--font-heading);
   font-size: 1.25rem;
