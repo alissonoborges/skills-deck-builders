@@ -790,34 +790,69 @@ p {
    9. TRUST BAR
    ———————————————————————————————————————————————————————————— */
 .trust-bar {
-  padding: var(--space-2xl) 0;
-  border-bottom: 1px solid var(--border);
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid var(--border-dark);
+  background-color: var(--bg-dark);
 }
 
-.trust-items {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-2xl);
+@media (max-width: 767px) {
+  .trust-bar {
+    padding: var(--space-lg) 0;
+  }
 }
 
-.trust-item {
+.trust-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .trust-bar-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    max-width: none;
+  }
+}
+
+.trust-bar-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-light);
   letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.02);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
-.trust-item svg,
-.trust-item .trust-icon {
+.trust-bar-item:hover {
+  background-color: rgba(184, 149, 106, 0.08);
+  border-color: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.trust-bar-item svg {
   color: var(--accent);
   width: 1.25rem;
   height: 1.25rem;
   flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .trust-bar-item:last-child {
+    grid-column: span 2;
+  }
 }
 
 /* ————————————————————————————————————————————————————————————
@@ -3715,10 +3750,6 @@ a.contact-item:hover .contact-icon {
 .mobile-menu .nav-mobile-cta,
 .mobile-menu .mobile-cta { margin-top: var(--space-2xl); }
 
-/* Trust bar aliases */
-.trust-bar-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-2xl); }
-.trust-bar-item { display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.05em; }
-.trust-bar-item svg { color: var(--accent); width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
 
 /* Community/City tag aliases */
 .community-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1rem; }
@@ -3862,6 +3893,9 @@ a.contact-item:hover .contact-icon {
   flex-wrap: wrap;
   max-width: 420px;
   animation: fadeIn 1s ease-out 0.5s both;
+}
+.trust-nowrap {
+  white-space: nowrap;
 }
 .hero-trust-tag .badge {
   background: var(--accent);
