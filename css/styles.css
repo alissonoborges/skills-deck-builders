@@ -3249,6 +3249,25 @@ a.contact-item:hover .contact-icon {
   font-size: 0.85rem;
 }
 
+/* No-wrap button helper */
+.btn-nowrap {
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .btn-nowrap {
+    font-size: 0.72rem;
+    padding: 1rem 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .btn-nowrap {
+    font-size: 0.68rem;
+    padding: 0.85rem 1rem;
+  }
+}
+
 /* Form Disclaimer */
 .form-disclaimer {
   font-family: var(--font-body);
@@ -3804,7 +3823,7 @@ a.contact-item:hover .contact-icon {
 
 /* Text link alias */
 .text-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: color var(--transition-base); }
-.text-link::after { content: '→'; display: inline-block; transition: transform var(--transition-base); }
+.text-link::after { content: '\2192'; display: inline-block; transition: transform var(--transition-base); }
 .text-link:hover { color: var(--accent-hover); }
 .text-link:hover::after { transform: translateX(4px); }
 
