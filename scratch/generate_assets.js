@@ -109,21 +109,22 @@ async function run() {
     // 2. GENERATE FAVICONS (favicon.ico / favicon.png)
     // ==========================================
     console.log('Generating favicons...');
-    // House icon crop box (Segment 0): left: 183, top: 21, width: 1650, height: 1650
-    const favLeft = 183;
-    const favTop = 21;
-    const favSize = 1650;
+    // House icon crop box (Segment 0 only): Y: 253..1438, X: 184..1832
+    const favLeft = 184;
+    const favTop = 253;
+    const favWidth = 1649;
+    const favHeight = 1186;
     
-    // Create RGBA buffer for the favicon (color: brand gold #B8956A / rgb: 184, 149, 106)
-    const faviconBuffer = Buffer.alloc(favSize * favSize * 4);
+    // Create RGBA buffer for the rectangular house icon crop
+    const faviconBuffer = Buffer.alloc(favWidth * favHeight * 4);
     
-    for (let cy = 0; cy < favSize; cy++) {
+    for (let cy = 0; cy < favHeight; cy++) {
       const y = favTop + cy;
-      for (let cx = 0; cx < favSize; cx++) {
+      for (let cx = 0; cx < favWidth; cx++) {
         const x = favLeft + cx;
         
         const inIdx = (y * width + x) * 3;
-        const outIdx = (cy * favSize + cx) * 4;
+        const outIdx = (cy * favWidth + cx) * 4;
         
         const r = rgbData[inIdx];
         const g = rgbData[inIdx + 1];
@@ -148,22 +149,33 @@ async function run() {
       }
     }
     
-    const favBase = sharp(faviconBuffer, {
-      raw: { width: favSize, height: favSize, channels: 4 }
-    });
+    // Load the raw rectangular buffer and resize with 'contain' to pad into a 512x512 square
+    const favBase = await sharp(faviconBuffer, {
+      raw: { width: favWidth, height: favHeight, channels: 4 }
+    })
+    .resize({
+      width: 512,
+      height: 512,
+      fit: 'contain',
+      background: { r: 0, g: 0, b: 0, alpha: 0 }
+    })
+    .png()
+    .toBuffer();
+    
+    const favBaseSharp = sharp(favBase);
     
     // Save favicon.png (32x32)
-    const png32 = await favBase.clone().resize(32, 32).png().toBuffer();
+    const png32 = await favBaseSharp.clone().resize(32, 32).png().toBuffer();
     fs.writeFileSync(path.join(workspacePath, 'favicon.png'), png32);
     console.log('Saved favicon.png (32x32)');
     
     // Save apple-touch-icon.png (180x180)
-    await favBase.clone().resize(180, 180).png().toFile(path.join(workspacePath, 'apple-touch-icon.png'));
+    await favBaseSharp.clone().resize(180, 180).png().toFile(path.join(workspacePath, 'apple-touch-icon.png'));
     console.log('Saved apple-touch-icon.png (180x180)');
     
     // Generate multi-resolution ICO file
-    const png16 = await favBase.clone().resize(16, 16).png().toBuffer();
-    const png48 = await favBase.clone().resize(48, 48).png().toBuffer();
+    const png16 = await favBaseSharp.clone().resize(16, 16).png().toBuffer();
+    const png48 = await favBaseSharp.clone().resize(48, 48).png().toBuffer();
     
     const icoBuffer = makeIco([png16, png32, png48], [16, 32, 48]);
     fs.writeFileSync(path.join(workspacePath, 'favicon.ico'), icoBuffer);
