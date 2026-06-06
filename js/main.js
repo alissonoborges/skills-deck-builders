@@ -941,12 +941,28 @@ document.addEventListener('DOMContentLoaded', () => {
         communityTags.forEach((t) => t.classList.remove('active'));
         tag.classList.add('active');
 
-        // Extract city name and build the Google Maps embed URL
+        // Extract neighborhood/city name and build the Google Maps embed URL
         const city = tag.textContent.trim();
-        const query = encodeURIComponent(`${city}, MA`);
         
-        // Use standard maps search URL which works without API Key and centers on the city
-        const newSrc = `https://maps.google.com/maps?q=${query}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+        // Find parent city if on a city landing page (by looking at page headers)
+        const pageHeader = document.querySelector('h1')?.textContent || '';
+        let parentCity = '';
+        const citiesList = [
+          'Wellesley', 'Weston', 'Chestnut Hill', 'Brookline', 'Newton', 
+          'Sudbury', 'Dover', 'Lincoln', 'Concord', 'Lexington', 
+          'Needham', 'Wayland', 'Winchester'
+        ];
+        for (const c of citiesList) {
+          if (pageHeader.includes(c)) {
+            parentCity = c + ', ';
+            break;
+          }
+        }
+        
+        const query = encodeURIComponent(`${city}, ${parentCity}MA`);
+        
+        // Use standard maps search URL which works without API Key and centers on the location
+        const newSrc = `https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
         
         // Set new src
         mapIframe.src = newSrc;
