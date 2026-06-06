@@ -107,7 +107,7 @@ html {
 }
 
 body {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-dark);
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -254,12 +254,14 @@ p {
 }
 
 .section {
-  padding: var(--space-3xl) 0;
+  padding: var(--space-2xl) 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: var(--space-4xl) 0;
+    padding: var(--space-3xl) 0;
   }
 }
 
@@ -279,6 +281,7 @@ p {
 
 .section-alt {
   background-color: var(--bg-section);
+  color: var(--text-primary);
 }
 
 /* Grids */
@@ -1482,7 +1485,13 @@ p {
 .footer {
   background-color: var(--bg-dark);
   color: var(--text-light);
-  padding: var(--space-4xl) 0 var(--space-xl);
+  padding: var(--space-2xl) 0 var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: var(--space-3xl) 0 var(--space-xl);
+  }
 }
 
 .footer-grid {
@@ -1941,7 +1950,7 @@ a.contact-item:hover .contact-icon {
 .cta-section {
   background-color: var(--bg-dark);
   text-align: center;
-  padding: var(--space-5xl) 0;
+  padding: var(--space-3xl) 0;
   position: relative;
   overflow: hidden;
 }
@@ -2001,7 +2010,7 @@ a.contact-item:hover .contact-icon {
   }
 
   .section {
-    padding: var(--space-4xl) 0;
+    padding: var(--space-3xl) 0;
   }
 
 
@@ -2019,7 +2028,7 @@ a.contact-item:hover .contact-icon {
 /* ---- Desktop (1024px) ---- */
 @media (min-width: 1024px) {
   .section {
-    padding: var(--space-4xl) 0;
+    padding: var(--space-3xl) 0;
   }
 
   .section-header {
