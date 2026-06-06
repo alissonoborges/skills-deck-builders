@@ -668,6 +668,9 @@ p {
     width: auto;
     gap: 1rem;
   }
+  .hero-trust-tag {
+    max-width: none;
+  }
 }
 
 .hero .subtitle {
@@ -3847,15 +3850,17 @@ a.contact-item:hover .contact-icon {
    SALES MACHINE & CRO UPGRADES (SPLIT MOBILE CTA & TRUST BADGES)
    ========================================================================== */
 .hero-trust-tag {
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   font-family: var(--font-secondary);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  text-align: center;
+  gap: 0.5rem;
   flex-wrap: wrap;
+  max-width: 420px;
   animation: fadeIn 1s ease-out 0.5s both;
 }
 .hero-trust-tag .badge {
@@ -3894,9 +3899,9 @@ a.contact-item:hover .contact-icon {
 
   /* Trust tag: centered, smaller text */
   .hero-trust-tag {
-    font-size: 0.78rem;
-    justify-content: flex-start;
-    text-align: left;
+    font-size: 0.75rem;
+    justify-content: center;
+    text-align: center;
   }
 
   /* Sections: tighter on mobile */
