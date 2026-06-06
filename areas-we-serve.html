@@ -31,10 +31,18 @@
   <link rel="stylesheet" href="css/styles.css">
 
   <style>
-    /* Custom SVG Map Styles */
+    /* Custom SVG Map Styles (Dark Theme Integration) */
     .map-section {
       padding: 6rem 0;
-      background: var(--color-bg-alt);
+      background: var(--bg-dark);
+      color: var(--text-light);
+      --color-bg: var(--bg-dark);
+      --color-bg-alt: var(--bg-dark);
+      --color-primary: var(--accent);
+      --color-text: var(--text-light);
+      --color-text-muted: var(--text-muted);
+      --font-secondary: var(--font-body);
+      --font-primary: var(--font-heading);
     }
     .map-grid {
       display: grid;
@@ -51,7 +59,7 @@
     .map-container {
       position: relative;
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-dark);
       border-radius: 12px;
       padding: 2rem;
       box-shadow: var(--shadow-lg);
@@ -94,7 +102,7 @@
       font-weight: 600;
     }
     .map-link-line {
-      stroke: rgba(212, 175, 55, 0.15);
+      stroke: rgba(184, 149, 106, 0.15);
       stroke-width: 1.5;
       stroke-dasharray: 4,4;
     }
@@ -109,8 +117,8 @@
       }
     }
     .city-card {
-      background: var(--color-bg);
-      border: 1px solid rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-dark);
       padding: 1.5rem;
       border-radius: 8px;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -120,8 +128,8 @@
     }
     .city-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(212, 175, 55, 0.3);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      border-color: var(--color-primary);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
     .city-card h3 {
       font-family: var(--font-primary);
@@ -284,7 +292,7 @@
     <!-- ============================================
          INTERACTIVE MAP SECTION
     ============================================= -->
-    <section class="map-section">
+    <section class="map-section section-dark">
       <div class="container reveal">
         <span class="section-subtitle">OUR COVERAGE</span>
         <h2 class="section-title">Greater Boston &amp; MetroWest</h2>
