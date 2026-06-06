@@ -1116,7 +1116,7 @@ p {
 }
 
 .ba-handle::after {
-  content: '◂ ▸';
+  content: '\25c0 \25b6';
   position: absolute;
   top: 50%;
   left: 50%;
