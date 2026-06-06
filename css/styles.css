@@ -1152,6 +1152,9 @@ p {
   border: 1px solid var(--border);
   transition: box-shadow var(--transition-base),
               transform var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .testimonial-card:hover {
@@ -1195,6 +1198,7 @@ p {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-primary);
+  margin-top: auto;
 }
 
 .testimonial-location {
@@ -2704,6 +2708,9 @@ a.contact-item:hover .contact-icon {
   transition: border-color var(--transition-base),
               transform var(--transition-base),
               box-shadow var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .review-card:hover {
@@ -2732,6 +2739,9 @@ a.contact-item:hover .contact-icon {
 
 .review-card-content {
   padding: var(--space-xl) var(--space-xl) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .review-card-content .testimonial-stars {
@@ -2773,6 +2783,7 @@ a.contact-item:hover .contact-icon {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  margin-top: auto;
 }
 
 .review-card-content .testimonial-name {

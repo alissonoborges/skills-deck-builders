@@ -117,9 +117,10 @@
     .map-cities-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
       gap: 1.5rem;
     }
-    @media (max-width: 576px) {
+    @media (max-width: 768px) {
       .map-cities-list {
         grid-template-columns: 1fr;
       }
@@ -133,6 +134,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      height: 100%;
     }
     .city-card:hover {
       transform: translateY(-5px);
@@ -292,7 +294,7 @@
     <div class="hero-content container">
       <span class="hero-subtitle">SERVICE REGIONS</span>
       <h1>Areas We Serve</h1>
-      <p>Building architectural outdoor sanctuaries across Greater Boston's most prestigious communities.</p>
+      <p>Building custom composite decks and covered porches across Greater Boston and MetroWest.</p>
     </div>
   </section>
 
@@ -304,7 +306,7 @@
       <div class="container reveal">
         <span class="section-subtitle">OUR COVERAGE</span>
         <h2 class="section-title">Greater Boston &amp; MetroWest</h2>
-        <p class="section-intro">We design and construct luxury spaces tailored to the unique architectural profiles and local regulations of each community.</p>
+        <p class="section-intro">We build custom outdoor spaces tailored to match your home's style and comply with your town's building regulations.</p>
 
         <div class="map-grid">
           <!-- SVG Map -->
