@@ -962,7 +962,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const query = encodeURIComponent(`${city}, ${parentCity}MA`);
         
         // Use standard maps search URL which works without API Key and centers on the location
-        const newSrc = `https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+        const newSrc = `https://maps.google.com/maps?q=${query}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
         
         // Set new src
         mapIframe.src = newSrc;
