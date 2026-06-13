@@ -5,8 +5,8 @@
    Zero dependencies. Vanilla ES6+.
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
-  'use strict';
+document.addEventListener("DOMContentLoaded", () => {
+  "use strict";
 
   /* -----------------------------------------------------------------------
      UTILITIES
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
    * Format bytes to a human-readable string.
    */
   const formatBytes = (bytes) => {
-    if (bytes === 0) return '0 B';
+    if (bytes === 0) return "0 B";
     const k = 1024;
-    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const sizes = ["B", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return `${(bytes / Math.pow(k, i)).toFixed(1)} ${sizes[i]}`;
   };
@@ -61,29 +61,31 @@ document.addEventListener('DOMContentLoaded', () => {
      This drives the CSS transition for header shrink / background change.
      ----------------------------------------------------------------------- */
 
-  const nav = document.querySelector('.nav');
+  const nav = document.querySelector(".nav");
 
   const handleNavScroll = () => {
     if (!nav) return;
     if (window.scrollY > 100) {
-      nav.classList.add('scrolled');
+      nav.classList.add("scrolled");
     } else {
-      nav.classList.remove('scrolled');
+      nav.classList.remove("scrolled");
     }
   };
 
   // Fire immediately so the state is correct on load (e.g. if the page is
   // refreshed while scrolled down).
   handleNavScroll();
-  window.addEventListener('scroll', rafThrottle(handleNavScroll), { passive: true });
+  window.addEventListener("scroll", rafThrottle(handleNavScroll), {
+    passive: true,
+  });
 
   /* -----------------------------------------------------------------------
      2 · NAVIGATION — HAMBURGER TOGGLE
      Toggle the mobile nav and animate the hamburger icon to an ×.
      ----------------------------------------------------------------------- */
 
-  const hamburger = document.querySelector('.nav-hamburger');
-  const navMobile  = document.querySelector('.mobile-menu');
+  const hamburger = document.querySelector(".nav-hamburger");
+  const navMobile = document.querySelector(".mobile-menu");
 
   // Relocate mobile menu to root of body to escape transformed ancestors (backdrop-filter containing block bug on iOS)
   if (navMobile && navMobile.parentElement !== document.body) {
@@ -92,30 +94,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const openMobileNav = () => {
     if (!navMobile) return;
-    navMobile.classList.add('active');
-    hamburger?.classList.add('active');
-    document.body.style.overflow = 'hidden'; // prevent background scroll
+    navMobile.classList.add("active");
+    hamburger?.classList.add("active");
+    document.body.style.overflow = "hidden"; // prevent background scroll
   };
 
   const closeMobileNav = () => {
     if (!navMobile) return;
-    navMobile.classList.remove('active');
-    hamburger?.classList.remove('active');
-    document.body.style.overflow = '';
+    navMobile.classList.remove("active");
+    hamburger?.classList.remove("active");
+    document.body.style.overflow = "";
   };
 
-  hamburger?.addEventListener('click', () => {
-    navMobile?.classList.contains('active') ? closeMobileNav() : openMobileNav();
+  hamburger?.addEventListener("click", () => {
+    navMobile?.classList.contains("active")
+      ? closeMobileNav()
+      : openMobileNav();
   });
 
   // Close when clicking any link inside mobile nav
-  navMobile?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMobileNav);
+  navMobile?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMobileNav);
   });
 
   // Close on Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
       closeMobileNav();
       closeLightbox(); // also close lightbox if open (defined later)
     }
@@ -126,25 +130,27 @@ document.addEventListener('DOMContentLoaded', () => {
      Fade/slide elements in when they enter the viewport.
      ----------------------------------------------------------------------- */
 
-  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const revealElements = document.querySelectorAll(
+    ".reveal, .reveal-left, .reveal-right",
+  );
 
-  if (revealElements.length && 'IntersectionObserver' in window) {
+  if (revealElements.length && "IntersectionObserver" in window) {
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add("visible");
             observer.unobserve(entry.target); // trigger only once
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     revealElements.forEach((el) => revealObserver.observe(el));
   } else {
     // Fallback: make everything visible immediately
-    revealElements.forEach((el) => el.classList.add('visible'));
+    revealElements.forEach((el) => el.classList.add("visible"));
   }
 
   /* -----------------------------------------------------------------------
@@ -155,9 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const NAV_OFFSET = 80; // px — height of fixed nav
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (href === '#' || href === '#0') return; // skip dead links
+    anchor.addEventListener("click", (e) => {
+      const href = anchor.getAttribute("href");
+      if (href === "#" || href === "#0") return; // skip dead links
 
       const target = document.querySelector(href);
       if (!target) return;
@@ -165,8 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       closeMobileNav();
 
-      const top = target.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
-      window.scrollTo({ top, behavior: 'smooth' });
+      const top =
+        target.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+      window.scrollTo({ top, behavior: "smooth" });
     });
   });
 
@@ -176,16 +183,16 @@ document.addEventListener('DOMContentLoaded', () => {
      near the footer. Mobile only (< 768 px).
      ----------------------------------------------------------------------- */
 
-  const stickyCta = document.querySelector('.sticky-cta');
+  const stickyCta = document.querySelector(".sticky-cta");
 
   const handleStickyCta = () => {
     if (!stickyCta || window.innerWidth >= 768) {
-      stickyCta?.classList.remove('visible');
+      stickyCta?.classList.remove("visible");
       return;
     }
 
     const heroHeight = window.innerHeight; // hero is 100vh
-    const footer = document.querySelector('footer, .footer');
+    const footer = document.querySelector("footer, .footer");
     const footerTop = footer
       ? footer.getBoundingClientRect().top + window.scrollY
       : Infinity;
@@ -194,14 +201,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewportBottom = scrollY + window.innerHeight;
 
     if (scrollY > heroHeight && viewportBottom < footerTop - 100) {
-      stickyCta.classList.add('visible');
+      stickyCta.classList.add("visible");
     } else {
-      stickyCta.classList.remove('visible');
+      stickyCta.classList.remove("visible");
     }
   };
 
-  window.addEventListener('scroll', rafThrottle(handleStickyCta), { passive: true });
-  window.addEventListener('resize', debounce(handleStickyCta, 200), { passive: true });
+  window.addEventListener("scroll", rafThrottle(handleStickyCta), {
+    passive: true,
+  });
+  window.addEventListener("resize", debounce(handleStickyCta, 200), {
+    passive: true,
+  });
 
   /* -----------------------------------------------------------------------
      6 · BEFORE / AFTER SLIDER
@@ -209,9 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
      ----------------------------------------------------------------------- */
 
   const initBeforeAfterSliders = () => {
-    document.querySelectorAll('.ba-slider').forEach((slider) => {
-      const handle   = slider.querySelector('.ba-handle');
-      const afterImg = slider.querySelector('.ba-after');
+    document.querySelectorAll(".ba-slider").forEach((slider) => {
+      const handle = slider.querySelector(".ba-handle");
+      const afterImg = slider.querySelector(".ba-after");
       if (!handle || !afterImg) return;
 
       let isDragging = false;
@@ -233,45 +244,55 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       // Mouse events
-      handle.addEventListener('mousedown', (e) => {
+      handle.addEventListener("mousedown", (e) => {
         e.preventDefault();
         isDragging = true;
-        slider.classList.add('dragging');
+        slider.classList.add("dragging");
       });
 
-      window.addEventListener('mousemove', (e) => {
+      window.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
         requestAnimationFrame(() => setPosition(getPercentage(e.clientX)));
       });
 
-      window.addEventListener('mouseup', () => {
+      window.addEventListener("mouseup", () => {
         if (isDragging) {
           isDragging = false;
-          slider.classList.remove('dragging');
+          slider.classList.remove("dragging");
         }
       });
 
       // Touch events
-      handle.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        slider.classList.add('dragging');
-      }, { passive: true });
+      handle.addEventListener(
+        "touchstart",
+        () => {
+          isDragging = true;
+          slider.classList.add("dragging");
+        },
+        { passive: true },
+      );
 
-      window.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        const touch = e.touches[0];
-        requestAnimationFrame(() => setPosition(getPercentage(touch.clientX)));
-      }, { passive: true });
+      window.addEventListener(
+        "touchmove",
+        (e) => {
+          if (!isDragging) return;
+          const touch = e.touches[0];
+          requestAnimationFrame(() =>
+            setPosition(getPercentage(touch.clientX)),
+          );
+        },
+        { passive: true },
+      );
 
-      window.addEventListener('touchend', () => {
+      window.addEventListener("touchend", () => {
         if (isDragging) {
           isDragging = false;
-          slider.classList.remove('dragging');
+          slider.classList.remove("dragging");
         }
       });
 
       // Allow clicking anywhere on the slider to jump position
-      slider.addEventListener('click', (e) => {
+      slider.addEventListener("click", (e) => {
         setPosition(getPercentage(e.clientX));
       });
     });
@@ -284,9 +305,9 @@ document.addEventListener('DOMContentLoaded', () => {
      Swap data-src → src when images approach the viewport.
      ----------------------------------------------------------------------- */
 
-  const lazyImages = document.querySelectorAll('img[data-src]');
+  const lazyImages = document.querySelectorAll("img[data-src]");
 
-  if (lazyImages.length && 'IntersectionObserver' in window) {
+  if (lazyImages.length && "IntersectionObserver" in window) {
     const lazyObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
@@ -294,13 +315,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const img = entry.target;
             img.src = img.dataset.src;
             if (img.dataset.srcset) img.srcset = img.dataset.srcset;
-            img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
-            img.removeAttribute('data-src');
+            img.addEventListener("load", () => img.classList.add("loaded"), {
+              once: true,
+            });
+            img.removeAttribute("data-src");
             observer.unobserve(img);
           }
         });
       },
-      { rootMargin: '200px' }
+      { rootMargin: "200px" },
     );
 
     lazyImages.forEach((img) => lazyObserver.observe(img));
@@ -308,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fallback: load everything immediately
     lazyImages.forEach((img) => {
       img.src = img.dataset.src;
-      img.classList.add('loaded');
+      img.classList.add("loaded");
     });
   }
 
@@ -317,24 +340,27 @@ document.addEventListener('DOMContentLoaded', () => {
      Full-screen image viewer with keyboard navigation.
      ----------------------------------------------------------------------- */
 
-  const galleryItems = document.querySelectorAll('.portfolio-item, .gallery-item');
-  let lightboxOverlay = document.querySelector('.modal-overlay');
+  const galleryItems = document.querySelectorAll(
+    ".portfolio-item, .gallery-item",
+  );
+  let lightboxOverlay = document.querySelector(".modal-overlay");
   let lightboxContent = null;
-  let lightboxClose   = null;
-  let lightboxImages  = [];
-  let lightboxIndex   = 0;
+  let lightboxClose = null;
+  let lightboxImages = [];
+  let lightboxIndex = 0;
 
   // Build lightbox DOM if it doesn't already exist in the markup
   const ensureLightboxDOM = () => {
     if (lightboxOverlay) {
-      lightboxContent = lightboxOverlay.querySelector('.modal-content img') ||
-                        lightboxOverlay.querySelector('.modal-content');
-      lightboxClose   = lightboxOverlay.querySelector('.modal-close');
+      lightboxContent =
+        lightboxOverlay.querySelector(".modal-content img") ||
+        lightboxOverlay.querySelector(".modal-content");
+      lightboxClose = lightboxOverlay.querySelector(".modal-close");
       return;
     }
 
-    lightboxOverlay = document.createElement('div');
-    lightboxOverlay.className = 'modal-overlay';
+    lightboxOverlay = document.createElement("div");
+    lightboxOverlay.className = "modal-overlay";
     lightboxOverlay.innerHTML = `
       <button class="modal-close" aria-label="Close lightbox">&times;</button>
       <div class="modal-content">
@@ -345,18 +371,22 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.body.appendChild(lightboxOverlay);
 
-    lightboxContent = lightboxOverlay.querySelector('.modal-content img');
-    lightboxClose   = lightboxOverlay.querySelector('.modal-close');
+    lightboxContent = lightboxOverlay.querySelector(".modal-content img");
+    lightboxClose = lightboxOverlay.querySelector(".modal-close");
 
     // Prev / Next buttons
-    lightboxOverlay.querySelector('.modal-prev')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navigateLightbox(-1);
-    });
-    lightboxOverlay.querySelector('.modal-next')?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      navigateLightbox(1);
-    });
+    lightboxOverlay
+      .querySelector(".modal-prev")
+      ?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navigateLightbox(-1);
+      });
+    lightboxOverlay
+      .querySelector(".modal-next")
+      ?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navigateLightbox(1);
+      });
   };
 
   const openLightbox = (index) => {
@@ -367,19 +397,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     lightboxContent.src = src;
     lightboxContent.alt = `Project image ${index + 1} of ${lightboxImages.length}`;
-    lightboxOverlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    lightboxOverlay.classList.add("active");
+    document.body.style.overflow = "hidden";
   };
 
   const closeLightbox = () => {
     if (!lightboxOverlay) return;
-    lightboxOverlay.classList.remove('active');
-    document.body.style.overflow = '';
+    lightboxOverlay.classList.remove("active");
+    document.body.style.overflow = "";
   };
 
   const navigateLightbox = (direction) => {
     if (!lightboxImages.length) return;
-    lightboxIndex = (lightboxIndex + direction + lightboxImages.length) % lightboxImages.length;
+    lightboxIndex =
+      (lightboxIndex + direction + lightboxImages.length) %
+      lightboxImages.length;
     if (lightboxContent) {
       lightboxContent.src = lightboxImages[lightboxIndex];
       lightboxContent.alt = `Project image ${lightboxIndex + 1} of ${lightboxImages.length}`;
@@ -389,29 +421,29 @@ document.addEventListener('DOMContentLoaded', () => {
   if (galleryItems.length) {
     // Collect full-size image URLs
     lightboxImages = Array.from(galleryItems).map((item) => {
-      const img = item.querySelector('img');
-      return item.dataset.full || img?.dataset.src || img?.src || '';
+      const img = item.querySelector("img");
+      return item.dataset.full || img?.dataset.src || img?.src || "";
     });
 
     galleryItems.forEach((item, i) => {
-      item.style.cursor = 'pointer';
-      item.addEventListener('click', () => openLightbox(i));
+      item.style.cursor = "pointer";
+      item.addEventListener("click", () => openLightbox(i));
     });
 
     ensureLightboxDOM();
 
     // Close on overlay click (not on image)
-    lightboxOverlay.addEventListener('click', (e) => {
+    lightboxOverlay.addEventListener("click", (e) => {
       if (e.target === lightboxOverlay) closeLightbox();
     });
 
-    lightboxClose?.addEventListener('click', closeLightbox);
+    lightboxClose?.addEventListener("click", closeLightbox);
 
     // Keyboard: Escape, ← , →
-    document.addEventListener('keydown', (e) => {
-      if (!lightboxOverlay?.classList.contains('active')) return;
-      if (e.key === 'ArrowLeft')  navigateLightbox(-1);
-      if (e.key === 'ArrowRight') navigateLightbox(1);
+    document.addEventListener("keydown", (e) => {
+      if (!lightboxOverlay?.classList.contains("active")) return;
+      if (e.key === "ArrowLeft") navigateLightbox(-1);
+      if (e.key === "ArrowRight") navigateLightbox(1);
       // Escape is already handled globally above
     });
   }
@@ -421,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
      Validation, phone formatting, file upload, anti-double-submit.
      ----------------------------------------------------------------------- */
 
-  const contactForm = document.querySelector('.contact-form, #contact-form');
+  const contactForm = document.getElementById("consultation-form");
 
   if (contactForm) {
     let isSubmitting = false;
@@ -429,49 +461,49 @@ document.addEventListener('DOMContentLoaded', () => {
     /* — Inline validation helpers — */
 
     const showError = (field, message) => {
-      field.classList.add('error');
-      field.classList.remove('success');
-      let msg = field.parentElement.querySelector('.field-error');
+      field.classList.add("error");
+      field.classList.remove("success");
+      let msg = field.parentElement.querySelector(".field-error");
       if (!msg) {
-        msg = document.createElement('span');
-        msg.className = 'field-error';
+        msg = document.createElement("span");
+        msg.className = "field-error";
         field.parentElement.appendChild(msg);
       }
       msg.textContent = message;
     };
 
     const showSuccess = (field) => {
-      field.classList.remove('error');
-      field.classList.add('success');
-      const msg = field.parentElement.querySelector('.field-error');
-      if (msg) msg.textContent = '';
+      field.classList.remove("error");
+      field.classList.add("success");
+      const msg = field.parentElement.querySelector(".field-error");
+      if (msg) msg.textContent = "";
     };
 
     const validateField = (field) => {
       const value = field.value.trim();
-      const type  = field.type;
-      const name  = field.name || field.id;
+      const type = field.type;
+      const name = field.name || field.id;
 
       // Required check
-      if (field.hasAttribute('required') && !value) {
-        showError(field, 'This field is required.');
+      if (field.hasAttribute("required") && !value) {
+        showError(field, "This field is required.");
         return false;
       }
 
       // Email
-      if (type === 'email' && value) {
+      if (type === "email" && value) {
         const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRe.test(value)) {
-          showError(field, 'Please enter a valid email address.');
+          showError(field, "Please enter a valid email address.");
           return false;
         }
       }
 
       // Phone — expect at least 10 digits
-      if ((type === 'tel' || name === 'phone') && value) {
-        const digits = value.replace(/\D/g, '');
+      if ((type === "tel" || name === "phone") && value) {
+        const digits = value.replace(/\D/g, "");
         if (digits.length < 10) {
-          showError(field, 'Please enter a valid 10-digit phone number.');
+          showError(field, "Please enter a valid 10-digit phone number.");
           return false;
         }
       }
@@ -482,13 +514,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* — Phone auto-format as (XXX) XXX-XXXX — */
 
-    const phoneFields = contactForm.querySelectorAll('input[type="tel"], input[name="phone"]');
+    const phoneFields = contactForm.querySelectorAll(
+      'input[type="tel"], input[name="phone"]',
+    );
 
     phoneFields.forEach((phone) => {
-      phone.addEventListener('input', () => {
-        let digits = phone.value.replace(/\D/g, '').substring(0, 10);
+      phone.addEventListener("input", () => {
+        let digits = phone.value.replace(/\D/g, "").substring(0, 10);
         if (digits.length === 0) {
-          phone.value = '';
+          phone.value = "";
         } else if (digits.length <= 3) {
           phone.value = `(${digits}`;
         } else if (digits.length <= 6) {
@@ -501,18 +535,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* — Real-time validation on blur — */
 
-    contactForm.querySelectorAll('input, textarea, select').forEach((field) => {
-      field.addEventListener('blur', () => validateField(field));
+    contactForm.querySelectorAll("input, textarea, select").forEach((field) => {
+      field.addEventListener("blur", () => validateField(field));
     });
 
     /* — Submit — */
 
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
       if (isSubmitting) return;
 
+      // Honeypot check
+      const botCheck = contactForm.querySelector('input[name="botcheck"]');
+      if (botCheck && botCheck.checked) {
+        window.location.href = "/thank-you";
+        return;
+      }
+
       // Validate all fields
-      const fields = contactForm.querySelectorAll('input, textarea, select');
+      const fields = contactForm.querySelectorAll("input, textarea, select");
       let allValid = true;
       fields.forEach((field) => {
         if (!validateField(field)) allValid = false;
@@ -520,62 +561,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!allValid) {
         // Scroll to first error
-        const firstError = contactForm.querySelector('.error');
-        firstError?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const firstError = contactForm.querySelector(".error");
+        firstError?.scrollIntoView({ behavior: "smooth", block: "center" });
         return;
       }
 
       isSubmitting = true;
-      const submitBtn = contactForm.querySelector('button[type="submit"], input[type="submit"]');
+      const submitBtn = contactForm.querySelector(
+        'button[type="submit"], input[type="submit"]',
+      );
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.dataset.originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending…';
+        submitBtn.textContent = "Sending…";
       }
 
       // Collect form data
       const formData = new FormData(contactForm);
 
-      // In production, replace this with a real endpoint (e.g. Netlify Forms,
-      // Formspree, or your own API). For now we simulate a short delay.
-      const endpoint = contactForm.action || '/';
-
-      fetch(endpoint, {
-        method: 'POST',
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
         body: formData,
       })
-        .then((response) => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          handleFormSuccess();
+        .then(async (response) => {
+          const json = await response.json().catch(() => ({}));
+          if (response.ok) {
+            window.location.href = "/thank-you";
+          } else {
+            alert(
+              "Form submission failed: " +
+                (json.message || "Unknown error occurred."),
+            );
+            isSubmitting = false;
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent =
+                submitBtn.dataset.originalText ||
+                "Request Private Consultation";
+            }
+          }
         })
         .catch(() => {
-          // Even on a network error during development, show success for demo
-          // purposes. Replace with proper error handling in production.
-          handleFormSuccess();
+          alert(
+            "An error occurred while sending your request. Please try again or call us directly.",
+          );
+          isSubmitting = false;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent =
+              submitBtn.dataset.originalText || "Request Private Consultation";
+          }
         });
     });
-
-    const handleFormSuccess = () => {
-      // Check if there is a dedicated thank-you page
-      const thankYouPage = contactForm.dataset.redirect;
-      if (thankYouPage) {
-        window.location.href = thankYouPage;
-        return;
-      }
-
-      // Inline thank-you message
-      contactForm.innerHTML = `
-        <div class="form-success">
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
-          <h3>Thank You</h3>
-          <p>Your consultation request has been received. A member of our design team will be in touch within one business day.</p>
-        </div>
-      `;
-      contactForm.closest('section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    };
   }
 
   /* -----------------------------------------------------------------------
@@ -584,18 +621,19 @@ document.addEventListener('DOMContentLoaded', () => {
      and removal.
      ----------------------------------------------------------------------- */
 
-  const fileUploadArea = document.querySelector('.file-upload-area');
-  const fileInput      = document.querySelector('.file-upload-area input[type="file"]');
-  const filePreview    = document.querySelector('.file-preview');
+  const fileUploadArea = document.querySelector(".file-upload-area");
+  const fileInput = document.querySelector(
+    '.file-upload-area input[type="file"]',
+  );
+  const filePreview = document.querySelector(".file-preview");
 
-  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'video/mp4', 'video/quicktime'];
-  const ALLOWED_EXTS  = ['jpg', 'jpeg', 'png', 'mp4', 'mov'];
+  const ALLOWED_EXTS = ["jpg", "jpeg", "png", "mp4", "mov"];
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
   let uploadedFiles = []; // tracks the current set of user-selected files
 
   const validateFile = (file) => {
-    const ext = file.name.split('.').pop().toLowerCase();
+    const ext = file.name.split(".").pop().toLowerCase();
     if (!ALLOWED_EXTS.includes(ext)) {
       return `"${file.name}" — unsupported file type. Please upload JPG, PNG, MP4, or MOV.`;
     }
@@ -607,32 +645,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const renderFilePreviews = () => {
     if (!filePreview) return;
-    filePreview.innerHTML = '';
+    filePreview.innerHTML = "";
 
     uploadedFiles.forEach((file, index) => {
-      const item = document.createElement('div');
-      item.className = 'file-preview-item';
+      const item = document.createElement("div");
+      item.className = "file-preview-item";
 
-      if (file.type.startsWith('image/')) {
-        const img = document.createElement('img');
+      if (file.type.startsWith("image/")) {
+        const img = document.createElement("img");
         img.alt = file.name;
         const reader = new FileReader();
-        reader.onload = (e) => { img.src = e.target.result; };
+        reader.onload = (e) => {
+          img.src = e.target.result;
+        };
         reader.readAsDataURL(file);
         item.appendChild(img);
       } else {
         // Video — show icon + metadata
-        const info = document.createElement('div');
-        info.className = 'file-info';
-        info.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>';
-        
-        const nameSpan = document.createElement('span');
-        nameSpan.className = 'file-name';
+        const info = document.createElement("div");
+        info.className = "file-info";
+        info.innerHTML =
+          '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>';
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "file-name";
         nameSpan.textContent = file.name;
         info.appendChild(nameSpan);
 
-        const sizeSpan = document.createElement('span');
-        sizeSpan.className = 'file-size';
+        const sizeSpan = document.createElement("span");
+        sizeSpan.className = "file-size";
         sizeSpan.textContent = formatBytes(file.size);
         info.appendChild(sizeSpan);
 
@@ -640,12 +681,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Remove button
-      const removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.className = 'file-remove';
-      removeBtn.setAttribute('aria-label', `Remove ${file.name}`);
-      removeBtn.innerHTML = '&times;';
-      removeBtn.addEventListener('click', () => {
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.className = "file-remove";
+      removeBtn.setAttribute("aria-label", `Remove ${file.name}`);
+      removeBtn.innerHTML = "&times;";
+      removeBtn.addEventListener("click", () => {
         uploadedFiles.splice(index, 1);
         renderFilePreviews();
       });
@@ -668,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (errors.length) {
-      alert(errors.join('\n'));
+      alert(errors.join("\n"));
     }
 
     renderFilePreviews();
@@ -676,34 +717,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (fileUploadArea && fileInput) {
     // Click to open file picker
-    fileUploadArea.addEventListener('click', (e) => {
+    fileUploadArea.addEventListener("click", (e) => {
       if (e.target === fileInput) return; // avoid infinite loop
       fileInput.click();
     });
 
-    fileInput.addEventListener('change', () => {
+    fileInput.addEventListener("change", () => {
       handleFiles(fileInput.files);
-      fileInput.value = ''; // reset so re-selecting the same file works
+      fileInput.value = ""; // reset so re-selecting the same file works
     });
 
     // Drag & Drop
-    ['dragenter', 'dragover'].forEach((evt) => {
+    ["dragenter", "dragover"].forEach((evt) => {
       fileUploadArea.addEventListener(evt, (e) => {
         e.preventDefault();
         e.stopPropagation();
-        fileUploadArea.classList.add('drag-over');
+        fileUploadArea.classList.add("drag-over");
       });
     });
 
-    ['dragleave', 'drop'].forEach((evt) => {
+    ["dragleave", "drop"].forEach((evt) => {
       fileUploadArea.addEventListener(evt, (e) => {
         e.preventDefault();
         e.stopPropagation();
-        fileUploadArea.classList.remove('drag-over');
+        fileUploadArea.classList.remove("drag-over");
       });
     });
 
-    fileUploadArea.addEventListener('drop', (e) => {
+    fileUploadArea.addEventListener("drop", (e) => {
       handleFiles(e.dataTransfer.files);
     });
   }
@@ -713,14 +754,14 @@ document.addEventListener('DOMContentLoaded', () => {
      Animate numbers from 0 → data-target when scrolled into view.
      ----------------------------------------------------------------------- */
 
-  const counters = document.querySelectorAll('.counter');
+  const counters = document.querySelectorAll(".counter");
 
   const animateCounter = (el) => {
-    const target   = parseInt(el.dataset.target, 10) || 0;
-    const suffix   = el.dataset.suffix || '';
-    const prefix   = el.dataset.prefix || '';
+    const target = parseInt(el.dataset.target, 10) || 0;
+    const suffix = el.dataset.suffix || "";
+    const prefix = el.dataset.prefix || "";
     const duration = 2000; // ms
-    let start      = null;
+    let start = null;
 
     const step = (timestamp) => {
       if (!start) start = timestamp;
@@ -740,7 +781,7 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(step);
   };
 
-  if (counters.length && 'IntersectionObserver' in window) {
+  if (counters.length && "IntersectionObserver" in window) {
     const counterObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
@@ -750,7 +791,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     counters.forEach((c) => counterObserver.observe(c));
@@ -771,7 +812,7 @@ document.addEventListener('DOMContentLoaded', () => {
      Translate .hero-bg at 30 % of scroll rate for a gentle depth effect.
      ----------------------------------------------------------------------- */
 
-  const heroBg = document.querySelector('.hero-bg');
+  const heroBg = document.querySelector(".hero-bg");
 
   const handleParallax = () => {
     if (!heroBg || window.innerWidth < 768) return;
@@ -779,7 +820,9 @@ document.addEventListener('DOMContentLoaded', () => {
     heroBg.style.transform = `translateY(${offset}px)`;
   };
 
-  window.addEventListener('scroll', rafThrottle(handleParallax), { passive: true });
+  window.addEventListener("scroll", rafThrottle(handleParallax), {
+    passive: true,
+  });
 
   /* -----------------------------------------------------------------------
      13 · ACTIVE NAV HIGHLIGHTING
@@ -788,13 +831,15 @@ document.addEventListener('DOMContentLoaded', () => {
      nav hrefs).
      ----------------------------------------------------------------------- */
 
-  const navLinks   = document.querySelectorAll('.nav-links a[href^="#"], .nav-mobile a[href^="#"]');
-  const sections   = [];
+  const navLinks = document.querySelectorAll(
+    '.nav-links a[href^="#"], .nav-mobile a[href^="#"]',
+  );
+  const sections = [];
 
   // Build a list of observable sections
   navLinks.forEach((link) => {
-    const id = link.getAttribute('href');
-    if (id && id !== '#') {
+    const id = link.getAttribute("href");
+    if (id && id !== "#") {
       const section = document.querySelector(id);
       if (section) sections.push(section);
     }
@@ -802,11 +847,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const setActiveLink = (id) => {
     navLinks.forEach((link) => {
-      link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
     });
   };
 
-  if (sections.length && 'IntersectionObserver' in window) {
+  if (sections.length && "IntersectionObserver" in window) {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -818,7 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         rootMargin: `-${NAV_OFFSET}px 0px -40% 0px`,
         threshold: 0,
-      }
+      },
     );
 
     sections.forEach((s) => sectionObserver.observe(s));
@@ -829,7 +874,7 @@ document.addEventListener('DOMContentLoaded', () => {
      Keep the copyright year current automatically.
      ----------------------------------------------------------------------- */
 
-  const yearEl = document.querySelector('.current-year');
+  const yearEl = document.querySelector(".current-year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* -----------------------------------------------------------------------
@@ -838,48 +883,54 @@ document.addEventListener('DOMContentLoaded', () => {
      parallax and transition-heavy reveals.
      ----------------------------------------------------------------------- */
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  );
 
   const applyReducedMotion = () => {
     if (prefersReducedMotion.matches) {
       // Immediately reveal all elements
-      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => {
-        el.classList.add('visible');
-      });
+      document
+        .querySelectorAll(".reveal, .reveal-left, .reveal-right")
+        .forEach((el) => {
+          el.classList.add("visible");
+        });
       // Disable parallax
-      if (heroBg) heroBg.style.transform = 'none';
+      if (heroBg) heroBg.style.transform = "none";
     }
   };
 
   applyReducedMotion();
-  prefersReducedMotion.addEventListener('change', applyReducedMotion);
+  prefersReducedMotion.addEventListener("change", applyReducedMotion);
 
   /* -----------------------------------------------------------------------
      16 · PORTFOLIO FILTER
      Filter portfolio items by category using the pill buttons.
      ----------------------------------------------------------------------- */
 
-  const filterPills = document.querySelectorAll('.filter-pill');
-  const portfolioItems = document.querySelectorAll('.portfolio-item[data-category]');
+  const filterPills = document.querySelectorAll(".filter-pill");
+  const portfolioItems = document.querySelectorAll(
+    ".portfolio-item[data-category]",
+  );
 
   if (filterPills.length && portfolioItems.length) {
     filterPills.forEach((pill) => {
-      pill.addEventListener('click', () => {
+      pill.addEventListener("click", () => {
         // Update active pill
-        filterPills.forEach((p) => p.classList.remove('active'));
-        pill.classList.add('active');
+        filterPills.forEach((p) => p.classList.remove("active"));
+        pill.classList.add("active");
 
         const filter = pill.dataset.filter;
 
         portfolioItems.forEach((item) => {
-          if (filter === 'all') {
-            item.classList.remove('filtered-out');
+          if (filter === "all") {
+            item.classList.remove("filtered-out");
           } else {
-            const categories = item.dataset.category || '';
+            const categories = item.dataset.category || "";
             if (categories.includes(filter)) {
-              item.classList.remove('filtered-out');
+              item.classList.remove("filtered-out");
             } else {
-              item.classList.add('filtered-out');
+              item.classList.add("filtered-out");
             }
           }
         });
@@ -892,24 +943,24 @@ document.addEventListener('DOMContentLoaded', () => {
      Toggle FAQ answers open/closed. Only one can be open at a time.
      ----------------------------------------------------------------------- */
 
-  const faqQuestions = document.querySelectorAll('.faq-question');
+  const faqQuestions = document.querySelectorAll(".faq-question");
 
   if (faqQuestions.length) {
     faqQuestions.forEach((btn) => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener("click", () => {
         const answer = btn.nextElementSibling;
-        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        const isOpen = btn.getAttribute("aria-expanded") === "true";
 
         // Close all other FAQ items
         faqQuestions.forEach((otherBtn) => {
-          otherBtn.setAttribute('aria-expanded', 'false');
-          otherBtn.nextElementSibling?.classList.remove('open');
+          otherBtn.setAttribute("aria-expanded", "false");
+          otherBtn.nextElementSibling?.classList.remove("open");
         });
 
         // Toggle current item
         if (!isOpen) {
-          btn.setAttribute('aria-expanded', 'true');
-          answer?.classList.add('open');
+          btn.setAttribute("aria-expanded", "true");
+          answer?.classList.add("open");
         }
       });
     });
@@ -920,50 +971,62 @@ document.addEventListener('DOMContentLoaded', () => {
      When clicking on community/area tags, change the Google Maps iframe source.
      ----------------------------------------------------------------------- */
 
-  const communityTags = document.querySelectorAll('.community-tag, .area-tag');
-  const mapIframe = document.querySelector('.map-placeholder iframe');
+  const communityTags = document.querySelectorAll(".community-tag, .area-tag");
+  const mapIframe = document.querySelector(".map-placeholder iframe");
 
   if (communityTags.length && mapIframe) {
     // Set first tag active by default if none are active
-    let activeTag = Array.from(communityTags).find(tag => tag.classList.contains('active'));
+    let activeTag = Array.from(communityTags).find((tag) =>
+      tag.classList.contains("active"),
+    );
     if (!activeTag && communityTags.length > 0) {
-      communityTags[0].classList.add('active');
+      communityTags[0].classList.add("active");
     }
 
     communityTags.forEach((tag) => {
       // In contact.html, the tags are links. Prevent default action.
-      tag.addEventListener('click', (e) => {
-        if (tag.tagName.toLowerCase() === 'a') {
+      tag.addEventListener("click", (e) => {
+        if (tag.tagName.toLowerCase() === "a") {
           e.preventDefault();
         }
 
         // Update active class
-        communityTags.forEach((t) => t.classList.remove('active'));
-        tag.classList.add('active');
+        communityTags.forEach((t) => t.classList.remove("active"));
+        tag.classList.add("active");
 
         // Extract neighborhood/city name and build the Google Maps embed URL
         const city = tag.textContent.trim();
-        
+
         // Find parent city if on a city landing page (by looking at page headers)
-        const pageHeader = document.querySelector('h1')?.textContent || '';
-        let parentCity = '';
+        const pageHeader = document.querySelector("h1")?.textContent || "";
+        let parentCity = "";
         const citiesList = [
-          'Wellesley', 'Weston', 'Chestnut Hill', 'Brookline', 'Newton', 
-          'Sudbury', 'Dover', 'Lincoln', 'Concord', 'Lexington', 
-          'Needham', 'Wayland', 'Winchester'
+          "Wellesley",
+          "Weston",
+          "Chestnut Hill",
+          "Brookline",
+          "Newton",
+          "Sudbury",
+          "Dover",
+          "Lincoln",
+          "Concord",
+          "Lexington",
+          "Needham",
+          "Wayland",
+          "Winchester",
         ];
         for (const c of citiesList) {
           if (pageHeader.includes(c)) {
-            parentCity = c + ', ';
+            parentCity = c + ", ";
             break;
           }
         }
-        
+
         const query = encodeURIComponent(`${city}, ${parentCity}MA`);
-        
+
         // Use standard maps search URL which works without API Key and centers on the location
         const newSrc = `https://maps.google.com/maps?q=${query}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
-        
+
         // Set new src
         mapIframe.src = newSrc;
       });

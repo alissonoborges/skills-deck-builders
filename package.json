@@ -1,5 +1,18 @@
 {
+  "name": "skills-deck-builders",
+  "version": "1.0.0",
+  "scripts": {
+    "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
+    "lint": "eslint js/main.js",
+    "test": "node test_links.js",
+    "check": "node optimize_site.js && node inspect_images.js && node test_links.js",
+    "optimize-images": "node optimize_logos.js"
+  },
   "dependencies": {
     "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5"
   }
 }

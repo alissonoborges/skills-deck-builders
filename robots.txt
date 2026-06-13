@@ -4,4 +4,4 @@ Allow: /
 Sitemap: https://skillsdeckbuilders.com/sitemap.xml
 
 # Skills Deck Builders
-# Luxury Outdoor Living for Massachusetts' Finest Homes
+# Luxury Outdoor Living for Massachusetts Homes
