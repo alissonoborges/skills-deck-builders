@@ -1,15 +1,18 @@
-const fs = require("fs");
-const path = require("path");
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 function minifyCSS() {
-  const cssPath = path.join(__dirname, "css", "styles.css");
-  const cssMinPath = path.join(__dirname, "css", "styles.min.css");
-  if (!fs.existsSync(cssPath)) {
+  const cssPath = join(__dirname, "css", "styles.css");
+  const cssMinPath = join(__dirname, "css", "styles.min.css");
+  if (!existsSync(cssPath)) {
     console.error("styles.css not found.");
     return;
   }
 
-  const cssContent = fs.readFileSync(cssPath, "utf8");
+  const cssContent = readFileSync(cssPath, "utf8");
 
   // Safe CSS Minification
   const minified = cssContent
@@ -19,19 +22,19 @@ function minifyCSS() {
     .replace(/;}/g, "}") // Remove trailing semicolons
     .trim();
 
-  fs.writeFileSync(cssMinPath, minified, { encoding: "utf8" });
+  writeFileSync(cssMinPath, minified, { encoding: "utf8" });
   console.log("CSS Minification complete. Written to styles.min.css");
 }
 
 function minifyJS() {
-  const jsPath = path.join(__dirname, "js", "main.js");
-  const jsMinPath = path.join(__dirname, "js", "main.min.js");
-  if (!fs.existsSync(jsPath)) {
+  const jsPath = join(__dirname, "js", "main.js");
+  const jsMinPath = join(__dirname, "js", "main.min.js");
+  if (!existsSync(jsPath)) {
     console.error("main.js not found.");
     return;
   }
 
-  const jsContent = fs.readFileSync(jsPath, "utf8");
+  const jsContent = readFileSync(jsPath, "utf8");
 
   // Basic comments cleanup for JS
   const lines = jsContent.split("\n");
@@ -58,7 +61,7 @@ function minifyJS() {
     .replace(/\n\s*\n/g, "\n") // Remove multiple blank lines
     .trim();
 
-  fs.writeFileSync(jsMinPath, cleaned, { encoding: "utf8" });
+  writeFileSync(jsMinPath, cleaned, { encoding: "utf8" });
   console.log("JS Cleanup complete. Written to main.min.js");
 }
 

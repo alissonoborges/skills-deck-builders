@@ -1,14 +1,17 @@
-const fs = require("fs");
-const path = require("path");
+import { readFileSync, readdirSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 let errors = 0;
 
-fs.readdirSync(__dirname).forEach((file) => {
+readdirSync(__dirname).forEach((file) => {
   if (file.endsWith(".html")) {
-    const content = fs.readFileSync(path.join(__dirname, file), "utf8");
+    const content = readFileSync(join(__dirname, file), "utf8");
 
     // Check internal links containing .html
-    const htmlLinks = content.match(/href="[^"]+\.html(#?[^"]*)?"/g);
+    const htmlLinks = content.match(/href="[^"]+\.html(#?[^"]*)?" /g);
     if (htmlLinks) {
       console.log(`[Error] File ${file} has .html links:`, htmlLinks);
       errors++;

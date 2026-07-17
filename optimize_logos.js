@@ -1,5 +1,5 @@
-const sharp = require("sharp");
-const fs = require("fs");
+import sharp from "sharp";
+import { renameSync, existsSync, unlinkSync } from "fs";
 
 async function optimizeLogos() {
   console.log("Starting optimization of logos...");
@@ -10,7 +10,7 @@ async function optimizeLogos() {
     .resize(800, 800, { fit: "inside" })
     .png({ quality: 80, compressionLevel: 9, palette: true })
     .toFile("images/logo-nobg_optimized.png");
-  fs.renameSync("images/logo-nobg_optimized.png", "images/logo-nobg.png");
+  renameSync("images/logo-nobg_optimized.png", "images/logo-nobg.png");
   console.log("logo-nobg.png optimized.");
 
   // 2. Optimize logo-share.png
@@ -18,7 +18,7 @@ async function optimizeLogos() {
   await sharp("images/logo-share.png")
     .png({ quality: 80, compressionLevel: 9, palette: true })
     .toFile("images/logo-share_optimized.png");
-  fs.renameSync("images/logo-share_optimized.png", "images/logo-share.png");
+  renameSync("images/logo-share_optimized.png", "images/logo-share.png");
   console.log("logo-share.png optimized.");
 
   // 3. Optimize logo-whatsapp.jpg
@@ -27,15 +27,12 @@ async function optimizeLogos() {
     .resize(640, 640)
     .jpeg({ quality: 80, mozjpeg: true })
     .toFile("images/logo-whatsapp_optimized.jpg");
-  fs.renameSync(
-    "images/logo-whatsapp_optimized.jpg",
-    "images/logo-whatsapp.jpg",
-  );
+  renameSync("images/logo-whatsapp_optimized.jpg", "images/logo-whatsapp.jpg");
   console.log("logo-whatsapp.jpg optimized.");
 
   // 4. Remove logo-8k.png
-  if (fs.existsSync("images/logo-8k.png")) {
-    fs.unlinkSync("images/logo-8k.png");
+  if (existsSync("images/logo-8k.png")) {
+    unlinkSync("images/logo-8k.png");
     console.log("logo-8k.png deleted.");
   }
 

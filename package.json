@@ -1,6 +1,7 @@
 {
   "name": "skills-deck-builders",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
     "lint": "eslint js/main.js",
@@ -9,10 +10,12 @@
     "optimize-images": "node optimize_logos.js"
   },
   "dependencies": {
-    "sharp": "^0.34.5"
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "prettier": "^3.2.5"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.5"
   }
 }

@@ -1,5 +1,8 @@
-const fs = require("fs");
-const path = require("path");
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "fs";
+import { join, dirname, basename } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const CITY_MAP = {
   "deck-builder-brookline-ma": "Brookline",
@@ -18,11 +21,11 @@ const CITY_MAP = {
 };
 
 function processHtmlFile(filePath) {
-  const fileName = path.basename(filePath);
+  const fileName = basename(filePath);
   const baseName = fileName.replace(".html", "");
   console.log(`Processing file: ${fileName}`);
 
-  let content = fs.readFileSync(filePath, "utf8");
+  let content = readFileSync(filePath, "utf8");
 
   // 1. Replace 5.0 Star Rated Contractor on homepage
   if (baseName === "index") {
@@ -46,7 +49,7 @@ function processHtmlFile(filePath) {
   // 3. Clean URLs for Canonical links
   // <link rel="canonical" href="https://skillsdeckbuilders.com/about.html"> -> https://skillsdeckbuilders.com/about
   content = content.replace(
-    /(<link rel="canonical" href="https:\/\/skillsdeckbuilders\.com\/[^"]+)\.html(#?[^"]*)?(")/g,
+    /(<link rel="canonical" href="https:\/\/skillsdeckbuilders\.com\/[^"]+)\.html(#?[^"]*)?(")/,
     "$1$2$3",
   );
   // Handle index.html canonical link to root
@@ -160,14 +163,14 @@ function processHtmlFile(filePath) {
   );
 
   // Write file back as UTF-8 without BOM
-  fs.writeFileSync(filePath, content, { encoding: "utf8" });
+  writeFileSync(filePath, content, { encoding: "utf8" });
 }
 
 function processSitemap() {
-  const sitemapPath = path.join(__dirname, "sitemap.xml");
-  if (fs.existsSync(sitemapPath)) {
+  const sitemapPath = join(__dirname, "sitemap.xml");
+  if (existsSync(sitemapPath)) {
     console.log("Processing sitemap.xml...");
-    let content = fs.readFileSync(sitemapPath, "utf8");
+    let content = readFileSync(sitemapPath, "utf8");
     // Replace Vercel subdomains if any
     content = content.replace(
       /https:\/\/skills-deck-builders\.vercel\.app/g,
@@ -183,31 +186,31 @@ function processSitemap() {
       /https:\/\/skillsdeckbuilders\.com\/index/g,
       "https://skillsdeckbuilders.com/",
     );
-    fs.writeFileSync(sitemapPath, content, { encoding: "utf8" });
+    writeFileSync(sitemapPath, content, { encoding: "utf8" });
     console.log("sitemap.xml optimized.");
   }
 }
 
 function processRobotsTxt() {
-  const robotsPath = path.join(__dirname, "robots.txt");
-  if (fs.existsSync(robotsPath)) {
+  const robotsPath = join(__dirname, "robots.txt");
+  if (existsSync(robotsPath)) {
     console.log("Processing robots.txt...");
-    let content = fs.readFileSync(robotsPath, "utf8");
+    let content = readFileSync(robotsPath, "utf8");
     // Ensure correct sitemap link
     content = content.replace(
       /Sitemap:\s*\S+/gi,
       "Sitemap: https://skillsdeckbuilders.com/sitemap.xml",
     );
-    fs.writeFileSync(robotsPath, content, { encoding: "utf8" });
+    writeFileSync(robotsPath, content, { encoding: "utf8" });
     console.log("robots.txt optimized.");
   }
 }
 
 // Main execution
-const files = fs.readdirSync(__dirname);
+const files = readdirSync(__dirname);
 files.forEach((file) => {
   if (file.endsWith(".html")) {
-    processHtmlFile(path.join(__dirname, file));
+    processHtmlFile(join(__dirname, file));
   }
 });
 

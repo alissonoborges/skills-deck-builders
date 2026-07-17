@@ -1,4 +1,4 @@
-const sharp = require("sharp");
+import sharp from "sharp";
 
 async function inspect() {
   const nobg = await sharp("images/logo-nobg.png").metadata();
